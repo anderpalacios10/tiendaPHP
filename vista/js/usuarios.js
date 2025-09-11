@@ -35,13 +35,7 @@ $(".tablausuarios").DataTable({
 
 
 
-  
-  /*=============================================
-    VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-    =============================================*/
-
-
-
+ 
 
 /*EDITAR USUARIOI*/
 

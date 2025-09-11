@@ -90,8 +90,8 @@
                                                     <i class="fas fa-pencil-alt text-white"></i>
                                                 </button>
 
-                                                <button class="btn btn-danger btn-sm eliminarRol"
-                                                    idRolesE="<?php echo $value["id_roles"]  ?>" ?>
+                                                <button class="btn btn-danger btn-sm btnEliminarRol"
+                                                    idRolE="<?php echo $value["id_roles"]  ?>" ?>
                                                     <i class=" fas fa-trash-alt"></i>
                                                 </button>
 
@@ -195,4 +195,36 @@ Modal Crear roles
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-editar-rol">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar rol</h4>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="idRol" id="idRol"> <!-- hidden con el ID -->
+
+          <div class="form-group">
+            <label for="nom_rol">Nombre del rol</label>
+            <input type="hidden" name="id_rol" id="idRolEditar">
+<input type="text" class="form-control" name="editar_rol" id="editarRol" required>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+
+        <?php
+          $editarRol = new ctrRoles();
+          $editarRol -> ctrEditarRol();
+        ?>
+      </form>
+    </div>
+  </div>
 </div>

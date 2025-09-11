@@ -45,4 +45,38 @@ class ctrRoles
             }
         }
     }
+    static public function ctrEditarRol(){
+
+    if (isset($_POST["editar_rol"])){
+
+        $tabla = "roles";
+
+        $datos = array(
+            "id_roles" => $_POST["id_rol"],
+            "nom_rol" => $_POST["editar_rol"]
+        );
+
+        $respuesta = mdlRoles::mdlEditarRol($tabla, $datos);
+
+        if($respuesta == "ok"){
+            echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "El rol ha sido editado correctamente",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(function(){
+                    window.location = "roles";
+                });
+            </script>';
+        }
+    }
+}
+static public function ctrEliminarRol($item,$valor){
+
+        $tabla = "roles";
+        $respuesta = mdlroles::mdlEliminarRol($tabla,$item, $valor);
+
+        return $respuesta;
+    }
 }
