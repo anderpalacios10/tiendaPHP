@@ -1,3 +1,4 @@
+
 <div class="content-wrapper" style="min-height: 717px;">
   <section class="content-header">
     <div class="container-fluid">
@@ -37,12 +38,13 @@
                 <tbody>
                   <?php ?>
                   <?php
+                  
                   //  echo "<pre>"; print_r($usuarios); echo "</pre>";
                   foreach ($usuarios as $key => $value) {
 
                     $item = "id_roles";
                     $valor = $value["rol"];
-                    $roles = ctrRoles::ctrMostrarRoles($item, $valor);
+                    $rol = ctrRoles::ctrMostrarRoles($item, $valor);
 
 
 
@@ -53,7 +55,7 @@
                       <td><?php echo ($key + 1) ?></td>
                       <td><?php echo $value["nombres"] ?></td>
                       <td><?php echo $value["usuario"] ?></td>
-                      <td><?php echo $roles["nom_rol"] ?></td>
+                        <td><?php echo ($rol && isset($rol["nom_rol"])) ? $rol["nom_rol"] : "Rol no encontrado"; ?></td>
                       <!-- <td><button class="btn btn-info btn-sm">Activo</button></td> -->
                       <td>
                         <div class="btn-group">
@@ -122,9 +124,17 @@ Modal Crear usuarios
         <div class="form-group has-feedback">
           <label>rol</label>
           <select class="form-control" name="rol_user" required>
+              <?php
+              $roles = ctrRoles::ctrMostrarRoles2(); 
+              foreach($roles as $rol){
 
-            <option value="1">admin</option>
-            <option value="2">vendedor</option>
+              ?>
+
+            <option value="<?php echo $rol["id_roles"] ?>"><?php echo $rol["nom_rol"] ?></option>
+           <?php
+           }
+           ?>
+
 
           </select>
 
@@ -186,9 +196,16 @@ Modal editar usuarios
         <div class="form-group has-feedback">
           <label>rol</label>
           <select class="form-control" name="rol_userE" required>
-
-            <option value="1">admin</option>
-            <option value="2">vendedor</option>
+ <?php
+                        $roles = ctrRoles::ctrMostrarRoles2();
+                        
+                        foreach($roles as $rol){
+                            
+?>
+                        <option value="<?php echo $rol["id_roles"] ?>"><?php echo $rol["nom_rol"] ?></option>
+                        <?php
+                       }
+?>
 
           </select>
 

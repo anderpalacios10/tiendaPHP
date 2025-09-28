@@ -3,6 +3,8 @@
 class ctrUsuarios
 {
 
+	
+
 	static public function ctrEliminarUsuarios($id){
 		$tabla = "usuarios";
 		$respuesta = mdlUsuarios::mdlEliminarUsuarios($tabla,$id);

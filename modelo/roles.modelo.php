@@ -9,11 +9,12 @@ class  mdlroles{
         $stmt =Conexion::conectar()->prepare("select * from $tabla where $item=:$item");
         $stmt ->bindParam(":".$item, $valor, PDO::PARAM_STR);
         $stmt ->execute();
-        return $stmt->fetch();
+       return $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 
     }
+    
 
      static public function mdlMostrarRoles2($tabla){
     $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");

@@ -4,6 +4,8 @@ require_once "conexion.php";
 
 class mdlUsuarios
 {
+     
+
    static public function mdlEliminarUsuarios($tabla, $id)
 {
     $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");

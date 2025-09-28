@@ -1,7 +1,8 @@
 <?php
+session_start();
+
 $usuarios = ctrUsuarios::ctrMostrarUsuarios();
 $roles = ctrRoles::ctrMostrarRoles2(); 
-
 
 
 ?>
@@ -68,7 +69,7 @@ $roles = ctrRoles::ctrMostrarRoles2();
    if (isset($_GET["pagina"])) {
 
   // Ahora permites usuarios y roles
-  $permitidas = ["usuarios", "roles"];
+  $permitidas = ["usuarios", "roles","login"];
 
   if (in_array($_GET["pagina"], $permitidas)) {
     include "paginas/" . $_GET["pagina"] . ".php";
