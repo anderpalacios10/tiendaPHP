@@ -3,6 +3,44 @@
 class ctrUsuarios
 {
 
+	static public function ctrIngresoUsuarios(){
+		if(isset($_POST["log_user"])){
+			
+			$encriptarPass=crypt($_POST["log_pass"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+
+
+			$tabla="usuarios";
+			$item="usuario";
+			$valor=$_POST["log_user"];
+			$respuesta=mdlUsuarios::mdlMostrarUsuariosl($tabla,$item,$valor);
+			if($respuesta["usuario"]==$_POST["log_user"] && $respuesta["password"]==$encriptarPass){
+
+				$_SESSION["validarSession"]="ok";
+				$_SESSION["idBackend"]=$respuesta["id"];
+				echo '<script>
+
+							window.location = "usuarios";
+
+				 		</script>';
+
+
+
+			}else{
+
+
+				echo "<div class='alert alert-danger mt-3 small'>ERROR: Usuario y/o contraseña incorrectos</div>";
+
+
+			}
+
+			}
+
+
+		}
+
+
+	
 	
 
 	static public function ctrEliminarUsuarios($id){

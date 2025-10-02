@@ -24,7 +24,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="vista/imagenes/usuarios/ander.png" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <span class="hidden-xs"> <?php echo $admin ["nombres"]?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -32,7 +32,7 @@
               <img src="vista/imagenes/usuarios/ander.png" class="img-circle" alt="User Image">
 
               <p>
-                Anderson Palacios
+                  <?php echo $admin ["nombres"]?>
                 <small>Member since Nov. 2012</small>
               </p>
             </li>
@@ -57,7 +57,7 @@
                 <a href="#" class="btn btn-default btn-flat">Perfil</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Salir</a>
+                <a href="index.php?pagina=salir" class="btn btn-default btn-flat">Salir</a>
               </div>
             </li>
           </ul>

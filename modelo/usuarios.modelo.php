@@ -4,24 +4,37 @@ require_once "conexion.php";
 
 class mdlUsuarios
 {
-     
 
-   static public function mdlEliminarUsuarios($tabla, $id)
-{
-    $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
-    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    static public function mdlMostrarUsuariosl($tabla, $item, $valor)
+    {
 
-    if ($stmt->execute()) {
-        return "ok";
-    } else {
-        error_log(print_r($stmt->errorInfo(), true));
-        return "error";
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+        $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+
+        $stmt->close();
+        $stmt = null;
+    }
+    static public function mdlEliminarUsuarios($tabla, $id)
+    {
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            error_log(print_r($stmt->errorInfo(), true));
+            return "error";
+        }
+
+        $stmt = null;
     }
 
-    $stmt = null;
-}
-   
-   
+
     static public function mdlEditarUusarios($tabla, $datos)
     {
         $stmt = Conexion::conectar()->prepare("update $tabla SET usuario=:NOM_E, password=:PASS_E, nombres=:NOMUSER, rol=:ROL WHERE id=:IDE");

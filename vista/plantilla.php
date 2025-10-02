@@ -4,6 +4,10 @@ session_start();
 $usuarios = ctrUsuarios::ctrMostrarUsuarios();
 $roles = ctrRoles::ctrMostrarRoles2(); 
 
+if(isset($_SESSION["idBackend"])){
+
+  $admin=ctrUsuarios::ctrMostrarUsuarios1("id",$_SESSION["idBackend"]);
+}
 
 ?>
 
@@ -48,6 +52,19 @@ $roles = ctrRoles::ctrMostrarRoles2();
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<?php 
+if(!isset($_SESSION["validarSession"])):
+
+
+
+include "paginas/login.php";
+
+
+
+
+?>
+<?php else: ?>
+
 
 <body class="hold-transition skin-blue sidebar-mini">
   <!-- Site wrapper -->
@@ -65,25 +82,23 @@ $roles = ctrRoles::ctrMostrarRoles2();
 
 
 
-    <?php
-   if (isset($_GET["pagina"])) {
+      <?php
+if (isset($_GET["pagina"])) {
+    $permitidas = ["usuarios", "roles", "salir", "login"];
 
-  // Ahora permites usuarios y roles
-  $permitidas = ["usuarios", "roles","login"];
-
-  if (in_array($_GET["pagina"], $permitidas)) {
-    include "paginas/" . $_GET["pagina"] . ".php";
-  } 
+    if (in_array($_GET["pagina"], $permitidas)) {
+        include "paginas/" . $_GET["pagina"] . ".php";
+    }
 } else {
-  // Si no se define ninguna página, muestra usuarios por defecto
-  include "paginas/usuarios.php";
+    include "paginas/usuarios.php"; // por defecto
 }
+
+
 
     ?>
 
+        <?php include "modulos/footer.php"; ?>
 
-
-    <?php include "modulos/footer.php"; ?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -307,5 +322,5 @@ $roles = ctrRoles::ctrMostrarRoles2();
     })
   </script>
 </body>
-
+<?php endif ?>
 </html>
